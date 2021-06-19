@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +25,15 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
+
+
+
+
+
     {
+            
+    // Schema::defaultStringLength(191);
+    
         Collection::macro('paginate', function ($perPage, $total = null, $page = null, $pageName = 'page') {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
             return new LengthAwarePaginator(
@@ -38,5 +47,7 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
         });
+
+
     }
 }
